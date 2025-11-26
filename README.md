@@ -1,4 +1,8 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 🏡 Flex Reviews Dashboard
+
+A full-stack review management dashboard built for the Flex Living Developer Assessment
+
+This is a property management system(PMS) project that implements a modern Reviews Dashboard that enables Flex Living managers to view, analyze, normalize, and approve guest reviews for display on property pages. It includes a mocked Hostaway Reviews API, a clean UI dashboard, a property review display layout, and optional Google Reviews exploration.
 
 ## Getting Started
 
