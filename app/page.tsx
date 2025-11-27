@@ -1,23 +1,18 @@
 import Link from "next/link";
-import { ListChecks, ClipboardList, ListTodo } from "lucide-react";
+import { ListTodo } from "lucide-react";
+import PageHeader from "./components/PageHeader";
 
 
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-gray-50">
       <div className="max-w-3xl text-center">
-
-        {/* title */}
-        <h2 className="text-4xl md:text-5xl font-extrabold leading-tight text-gray-900">
-          Flex Living Reviews Dashboard Assessment
-        </h2>
-
-        {/* subtitle */}
-        <p className="mt-6 text-lg text-gray-600">
-          Welcome Guest! This project showcases a full reviews management
-          workflow including review normalization, manager approval, property
-          review UI, and API integrations built with Next.js, TypeScript, and Tailwind CSS.
-        </p>
+        {/* app header */}
+        <PageHeader
+          title="Flex Living Reviews Dashboard Assessment"
+          subtitle="Welcome Guest! This project showcases a complete reviews management workflow including review normalization, manager approval, property
+          review UI, and API integrations built with Next.js, TypeScript, and Tailwind CSS."
+        />
 
         {/* CTA buttons */}
         <div className="mt-10 flex flex-col sm:flex-row items-center gap-4 justify-center">
@@ -39,7 +34,7 @@ export default function Home() {
         </div>
 
         {/* information box */}
-        <div className="mt-14 bg-white shadow-md rounded-xl p-8 text-left border border-gray-100">
+        <div className="mt-20 bg-white shadow-md rounded-xl p-8 text-left border border-gray-100">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
             <ListTodo className="w-6 h-6 text-black" />
             Project Features
@@ -53,12 +48,6 @@ export default function Home() {
             <li>• Exploration for Google Reviews integration</li>
           </ul>
         </div>
-
-        {/* footer */}
-        <footer className="mt-14 text-sm text-gray-500">
-          © {new Date().getFullYear()} Flex Reviews Dashboard - Built by{" "}
-          <span className="font-semibold">Chiedozie Ezidiegwu</span>
-        </footer>
       </div>
     </main>
   );

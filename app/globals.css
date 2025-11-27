@@ -1,23 +1,33 @@
 @import "tailwindcss";
 
-html,
-body {
+/* reset minimal spacing — Tailwind already handles most resets */
+html, body {
   padding: 0;
   margin: 0;
 }
 
+/* base body styling */
 body {
   @apply bg-gray-50 text-gray-900 antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* smooth animations for UI interactions */
+/* smooth color transitions without causing layout shift */
 * {
-  @apply transition-colors duration-200 ease-in-out;
+  @apply transition-colors duration-150 ease-in-out;
 }
 
-/* dark mode (if needed later) */
+/* ensure images and videos don't overflow */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* dark mode fallbacks — controlled by user system preference */
 @media (prefers-color-scheme: dark) {
   body {
-    @apply bg-gray-900 text-gray-100;
+    @apply bg-gray-100 text-gray-700;
+    /* @apply bg-gray-900 text-gray-100; */
   }
 }
