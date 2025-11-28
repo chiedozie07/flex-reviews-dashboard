@@ -280,7 +280,7 @@ MIT — see LICENSE in the repo.
 
 👨‍💻 Built with ❤️ by **Chiedozie Ezidiegwu** — Frontend / Full-Stack Engineer.  
 LinkedIn: [Chiedozie Ezidiegwu](https://linkedin.com/in/chiedozie-ezidiegwu-9859a5167/)  
-Email: **chiedozieezidiegwu@gmail.com**  
+Email: **ezidiegwuchiedozie17@gmail.com**  
 GitHub: [chiedozie07/flex-reviews-dashboard](https://github.com/chiedozie07/flex-reviews-dashboard)
 
 **About this submission:**  
