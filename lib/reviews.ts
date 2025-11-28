@@ -1,43 +1,42 @@
-import fs from "fs";
+import { promises as fs } from "fs";
 import path from "path";
 
 
-// path to my approval storage file
-const approvalsFile = path.join(process.cwd(), "data", "approved-reviews.json");
-
-export type ApprovedReviewRecord = {
-  listingId: string | number;
-  listingName?: string;
-  reviews: any[];
-  counts: number;
+export type ApprovedProperty = {
+  listingId: string | number | null;
+  listingName: string | null;
   averageRating: number | null;
+  counts: number;
+  reviews: {
+    id: string;
+    guestName?: string | null;
+    publicReview?: string | null;
+    rating?: number | null;
+    categories?: { category: string; rating: number | null }[];
+    submittedAt?: string | null;
+  }[];
 };
 
-// ensure file exists
-function ensureFile() {
-  if (!fs.existsSync(approvalsFile)) {
-    fs.writeFileSync(approvalsFile, JSON.stringify([]));
-  }
-}
-
-// read the approved reviews store
-export async function getApprovedReviews(): Promise<ApprovedReviewRecord[]> {
+/**
+ * loads the approved-reviews.json file safely.
+ */
+export async function getApprovedReviews(): Promise<ApprovedProperty[]> {
   try {
-    ensureFile();
-    const raw = fs.readFileSync(approvalsFile, "utf8");
-    return JSON.parse(raw) as ApprovedReviewRecord[];
-  } catch (err) {
-    console.error("Error reading approved reviews:", err);
+    const filePath = path.join(process.cwd(), "app", "data", "approved-reviews.json");
+    const file = await fs.readFile(filePath, "utf8");
+    const json = JSON.parse(file);
+
+    if (Array.isArray(json)) {
+      return json as ApprovedProperty[];
+    }
+
+    if (Array.isArray(json.data)) {
+      return json.data as ApprovedProperty[];
+    }
+
     return [];
-  }
-}
-
-// save updated approvals
-export async function saveApprovedReviews(data: ApprovedReviewRecord[]) {
-  try {
-    ensureFile();
-    fs.writeFileSync(approvalsFile, JSON.stringify(data, null, 2));
-  } catch (err) {
-    console.error("Error writing approved reviews:", err);
+  } catch (error) {
+    console.error("Failed to load approved reviews:", error);
+    return [];
   }
 };

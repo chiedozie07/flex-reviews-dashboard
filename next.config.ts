@@ -2,26 +2,45 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   turbopack: {
-    root: __dirname, // prevents Next.js from scanning protected macOS folders
+    root: __dirname,
   },
   reactStrictMode: true,
+
   images: {
-    // allow the Supabase file host and theflex.global proxy host
     remotePatterns: [
+      // supabase storage
       {
         protocol: "https",
         hostname: "lsmvmmgkpbyqhthzdexc.supabase.co",
         port: "",
         pathname: "/**",
       },
+
+      // flex global image proxy
       {
         protocol: "https",
         hostname: "theflex.global",
         port: "",
         pathname: "/**",
       },
+
+      // iStock / getty images
+      {
+        protocol: "https",
+        hostname: "media.istockphoto.com",
+        port: "",
+        pathname: "/**",
+      },
+
+      // optional: allow common stock image hosts
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        port: "",
+        pathname: "/**",
+      }
     ],
-    // optional, keep a small cache TTL for remote images during dev/preview
+
     minimumCacheTTL: 60,
   },
 };
