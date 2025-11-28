@@ -1,33 +1,54 @@
-import { notFound } from "next/navigation";
 import PropertyLayout from "@/app/components/PropertyLayout";
-import { getApprovedReviews } from "@/lib/reviews";
+import approvedJson from "@/app/data/approved-reviews.json";
 
-
-interface PropertyPageProps {
-  params: {
-    id: string;
-  };
+// define data types
+type ApprovedReview = {
+  id: string;
+  guestName?: string | null;
+  publicReview?: string | null;
+  rating?: number | null;
+  categories?: { category: string; rating: number }[];
+  submittedAt?: string | null;
 };
 
-export default async function PropertyPage({ params }: PropertyPageProps) {
-  const { id } = params;
+type ApprovedProperty = {
+  listingId: number | string | null;
+  listingName: string | null;
+  averageRating: number | null;
+  counts: number;
+  reviews: ApprovedReview[];
+};
 
-  // load approved reviews (server-side)
-  const approvedReviews = await getApprovedReviews();
 
-  // pull property reviews by listingId
-  const property = approvedReviews.find(
-    (p) => p.listingId?.toString() === id.toString()
-  );
+export default async function PropertyPage({ params }: { params: { id: string } }) {
+  
+  const id = params.id; 
+
+  // type guard the imported JSON data
+  const approvedReviews: ApprovedProperty[] = Array.isArray(approvedJson) 
+    ? (approvedJson as ApprovedProperty[]) 
+    : [];
+
+  // search for the property using the destructured ID
+  const property = approvedReviews.find((p) => {
+    // Ensure listingId is present and convert it to a string for strict comparison
+    const listingIdString = p.listingId !== null ? String(p.listingId) : null;
+    return listingIdString === id;
+  });
 
   if (!property) {
-    return notFound();
+    return (
+      <div className="max-w-4xl mx-auto my-20 text-center text-gray-500">
+        <h2 className="text-2xl font-semibold mb-4">Property Not Found</h2>
+        <p>No approved reviews available for this property (ID: {id}).</p>
+      </div>
+    );
   }
 
   return (
     <PropertyLayout
       propertyName={property.listingName}
-      listingId={property.listingId ? String(property.listingId) : null}
+      listingId={property.listingId !== null ? String(property.listingId) : null}
       reviews={property.reviews}
       averageRating={property.averageRating}
       reviewCount={property.counts}

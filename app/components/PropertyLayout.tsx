@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
+
 export type ReviewCategory = {
   category: string;
   rating?: number | null;
@@ -24,19 +25,15 @@ type PropertyLayoutProps = {
 };
 
 /**
- * Server component: renders property hero, KPIs and list of approved reviews.
- * Expectation: `reviews` contains only approved reviews (dashboard responsibility).
+ * server component: renders property hero, KPIs and list of approved reviews.
+ * expectation: `reviews` contains only approved reviews (dashboard responsibility).
  */
-export default function PropertyLayout({
-  propertyName,
-  listingId,
-  reviews,
-  averageRating,
-  reviewCount,
-}: PropertyLayoutProps) {
+export default function PropertyLayout({propertyName, listingId, reviews, averageRating, reviewCount}: PropertyLayoutProps) {
   // safe date formatting on the server
   const formatDate = (iso?: string | null) =>
     iso ? new Date(iso).toLocaleDateString() : "—";
+
+  const propertyImage = "https://media.istockphoto.com/id/1990444472/photo/scandinavian-style-cozy-living-room-interior.jpg?s=612x612&w=0&k=20&c=qgzrs_4vKDrOVo6gVc0EVb9-PziE-REbV9DcM5ZAfig=";
 
   return (
     <main className="max-w-6xl mx-auto px-6 py-10">
@@ -44,7 +41,7 @@ export default function PropertyLayout({
       <section className="mb-8">
         <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-md bg-gray-100">
           <Image
-            src="/property-placeholder.jpg"
+            src={propertyImage}
             alt={propertyName ?? "Property image"}
             fill
             className="object-cover"

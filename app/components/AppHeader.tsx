@@ -9,7 +9,7 @@ import { Menu, X, Github, Building2 } from "lucide-react";
 // dynamic nav items
 const navItems = [
   { label: "Dashboard", href: "/dashboard" },
-  { label: "Properties", href: "/properties" },
+  { label: "Properties", href: "/dashboard/properties" },
   { label: "About", href: "/about" },
   {
     label: "GitHub",

@@ -1,0 +1,27 @@
+[
+  {
+    "listingId": 12345,
+    "listingName": "Flex Soho Apartment",
+    "averageRating": 4.7,
+    "counts": 12,
+    "reviews": [
+      {
+        "id": "RVW-009",
+        "guestName": "John Doe",
+        "publicReview": "Amazing stay! Very clean and cozy.",
+        "rating": 5,
+        "categories": [
+          {
+            "category": "cleanliness",
+            "rating": 9
+          },
+          {
+            "category": "communication",
+            "rating": 10
+          }
+        ],
+        "submittedAt": "2025-01-12T00:00:00Z"
+      }
+    ]
+  }
+]

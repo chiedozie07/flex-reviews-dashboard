@@ -1,6 +1,8 @@
+import React from "react";
+
 export default function AboutPage() {
   return (
-    <main className="max-w-5xl mx-auto px-6 py-16">
+    <main className="max-w-5xl mx-auto shadow px-10 py-16">
       <h1 className="text-4xl font-bold text-gray-900 mb-6">About Flex Reviews</h1>
       <p className="text-lg text-gray-700 leading-relaxed mb-6">
         Flex Reviews is a modern platform designed to help property owners, real estate firms,
